@@ -5,6 +5,8 @@
   type="text/javascript" charset="utf-8"></script>
   <script src="http://js.api.here.com/v3/3.0/mapsjs-service.js"
   type="text/javascript" charset="utf-8"></script>
+  <script src="http://js.api.here.com/v3/3.0/mapsjs-mapevents.js" 
+     type="text/javascript" charset="utf-8"></script>
   </head>
   <body>
   <div style="width: 640px; height: 480px" id="mapContainer"></div>
@@ -29,6 +31,14 @@
 	);
 	
 	map.setBaseLayer(maptypes.satellite.traffic);
+
+  var mapEvents = new H.mapevents.MapEvents(map);
+    map.addEventListener('tap', function(evt) {
+    // Log 'tap' and 'mouse' events:
+    console.log(evt.type, evt.currentPointer.type); 
+  });
+
+  var behavior = new H.mapevents.Behavior(mapEvents);
   </script>
   </body>
 </html>
